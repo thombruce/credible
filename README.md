@@ -1,4 +1,4 @@
-# Account
+# Credible
 
 ## Project setup
 ```

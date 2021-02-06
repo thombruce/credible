@@ -3,7 +3,7 @@ module.exports = {
     'vuetify'
   ],
   pwa: {
-    name: 'Account',
+    name: 'Credible',
     workboxPluginMode: 'GenerateSW',
     workboxOptions: {
       navigateFallback: '/index.html',
