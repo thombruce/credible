@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import user from '@/user'
 
 import VAccountForm from './VAccountMenu/VAccountForm'
 import VLoginForm from './VAccountMenu/VLoginForm'
@@ -24,16 +24,12 @@ export default {
   },
 
   computed: {
-    ...mapGetters('account', [
-      'authenticated'
-    ]),
-
     layout () {
       return 'v-' + this.view + '-form'
     },
 
     view () {
-      return this.authenticated ? 'account' : this.loggedOutView
+      return user.authenticated ? 'account' : this.loggedOutView
     }
   },
 

@@ -30,9 +30,7 @@
 </template>
 
 <script>
-import { gun, user } from '@/gun'
-
-import { mapState, mapActions, mapMutations } from 'vuex'
+import user from '@/user'
 
 export default {
   data () {
@@ -46,32 +44,26 @@ export default {
   },
 
   computed: {
-    ...mapState('account', [
-      'errors'
-    ])
+    errors () {
+      return user.errors
+    }
   },
 
   created () {
-    gun.get(user._.soul).once((user) => {
-      this.user.username = user.alias
-    })
+    this.user.username = user.alias
   },
 
   beforeDestroy () {
-    this.clearErrors()
+    user.clearErrors()
   },
 
   methods: {
-    ...mapActions('account', [
-      'update',
-      'logout'
-    ]),
-    ...mapMutations('account', [
-      'clearErrors'
-    ]),
+    logout () {
+      user.logout()
+    },
     changePassword () {
-      this.clearErrors()
-      this.update(this.user)
+      user.clearErrors()
+      user.changePassword(this.user.username, this.user.password, this.user.newPassword)
     }
   }
 }
