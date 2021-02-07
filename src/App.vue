@@ -1,11 +1,17 @@
 <template lang="pug">
   VApp
     VMain
+      VDarkmodeToggle.d-none
       router-view
 </template>
 
 <script>
+import VDarkmodeToggle from '@/components/controls/VDarkmodeToggle'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    VDarkmodeToggle
+  }
 }
 </script>
