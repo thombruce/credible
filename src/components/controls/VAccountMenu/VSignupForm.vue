@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
   data () {
@@ -42,11 +42,19 @@ export default {
     ])
   },
 
+  beforeDestroy () {
+    this.clearErrors()
+  },
+
   methods: {
     ...mapActions('account', [
       'create'
     ]),
+    ...mapMutations('account', [
+      'clearErrors'
+    ]),
     onSubmit () {
+      this.clearErrors()
       this.create(this.user)
     }
   }

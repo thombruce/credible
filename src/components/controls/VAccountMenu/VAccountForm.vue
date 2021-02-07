@@ -10,7 +10,13 @@
         hint="This can't be changed."
       )
       h3 Change password
-      VTextField(v-model="user.password" label="Password" type="password")
+      VTextField(
+        v-model="user.password"
+        label="Password"
+        type="password"
+        :error-count="(errors.password && errors.password.length) || 0"
+        :error-messages="errors.password"
+      )
       VTextField(
         v-model="user.newPassword"
         label="New password"
@@ -26,7 +32,7 @@
 <script>
 import { gun, user } from '@/gun'
 
-import { mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
   data () {
@@ -39,10 +45,20 @@ export default {
     }
   },
 
+  computed: {
+    ...mapState('account', [
+      'errors'
+    ])
+  },
+
   created () {
     gun.get(user._.soul).once((user) => {
       this.user.username = user.alias
     })
+  },
+
+  beforeDestroy () {
+    this.clearErrors()
   },
 
   methods: {
@@ -50,7 +66,11 @@ export default {
       'update',
       'logout'
     ]),
+    ...mapMutations('account', [
+      'clearErrors'
+    ]),
     changePassword () {
+      this.clearErrors()
       this.update(this.user)
     }
   }

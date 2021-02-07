@@ -3,7 +3,12 @@
     VCardTitle.headline
       | Login
     VCardText
-      VTextField(v-model="user.username" label="Username")
+      VTextField(
+        v-model="user.username"
+        label="Username"
+        :error-count="(errors.username && errors.username.length) || 0"
+        :error-messages="errors.username"
+      )
       VTextField(v-model="user.password" label="Password" type="password")
     VCardActions
       VSpacer
@@ -12,7 +17,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
   data () {
@@ -24,11 +29,25 @@ export default {
     }
   },
 
+  computed: {
+    ...mapState('account', [
+      'errors'
+    ])
+  },
+
+  beforeDestroy () {
+    this.clearErrors()
+  },
+
   methods: {
     ...mapActions('account', [
       'login'
     ]),
+    ...mapMutations('account', [
+      'clearErrors'
+    ]),
     onSubmit () {
+      this.clearErrors()
       this.login(this.user)
     }
   }
