@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import VAccountMenu from './VAccountMenu'
+import VAccountMenu from './VAccountDialog/VAccountMenu'
 
 export default {
   components: {
