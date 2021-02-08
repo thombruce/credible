@@ -6,12 +6,7 @@
 </template>
 
 <script>
-import VDarkmodeToggle from '@/components/VDarkmodeToggle'
-
 export default {
-  name: 'App',
-  components: {
-    VDarkmodeToggle
-  }
+  name: 'App'
 }
 </script>

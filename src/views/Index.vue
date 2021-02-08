@@ -6,11 +6,5 @@
 </template>
 
 <script>
-import VAccountMenu from '@/components/VAccountDialog/VAccountMenu'
-
-export default {
-  components: {
-    VAccountMenu
-  }
-}
+export default {}
 </script>

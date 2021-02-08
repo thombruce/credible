@@ -7,7 +7,11 @@ import vuetify from './plugins/vuetify'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import '@mdi/font/css/materialdesignicons.css'
 
+import HelvellynVue from './plugins/helvellyn-vue'
+
 Vue.config.productionTip = false
+
+Vue.use(HelvellynVue)
 
 new Vue({
   router,
